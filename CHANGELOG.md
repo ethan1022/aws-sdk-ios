@@ -4,6 +4,10 @@
 
 -Features for next release
 
+### Bug fixes
+- **AWSMobileClient**
+  - Fix getUserAttribute crashes App when session expired ([PR #3501](https://github.com/aws-amplify/aws-sdk-ios/pull/3501))
+
 ### Misc. Updates
 
 - Model updates for the following services
@@ -15,7 +19,7 @@
   - AWSLex
   - AWSSQS
   - AWSTranscribe
-  
+
 ## 2.23.3
 
 ### New Features
