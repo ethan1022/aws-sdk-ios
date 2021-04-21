@@ -54,6 +54,30 @@ static NSString *const AWSCredentialsProviderKeychainIdentityId = @"identityId";
 
 @implementation AWSCredentials
 
+static NSString *const kAccessKey = @"accessKey";
+static NSString *const kSecretKey = @"secretKey";
+static NSString *const kSessionKey = @"sessionKey";
+static NSString *const kExpiration = @"expiration";
+
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    self = [super init];
+    if (self) {
+        _accessKey = [coder decodeObjectForKey:kAccessKey];
+        _secretKey = [coder decodeObjectForKey:kSecretKey];
+        _sessionKey = [coder decodeObjectForKey:kSessionKey];
+        _expiration = [coder decodeObjectForKey:kExpiration];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject: _accessKey forKey:kAccessKey];
+    [aCoder encodeObject: _secretKey forKey:kSecretKey];
+    [aCoder encodeObject: _sessionKey forKey:kSessionKey];
+    [aCoder encodeObject: _expiration forKey:kExpiration];
+}
+
+
 - (nullable instancetype)initFromKeychain:(nonnull AWSUICKeyChainStore *)keychain {
     if (self = [super init]) {
         if (keychain[AWSCredentialsProviderKeychainAccessKeyId]
